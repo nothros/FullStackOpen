@@ -1,14 +1,14 @@
-# Part 0
+# Osa 0
 
 ## 0.4 uusi muistiinpano
 
-[!uusi_muistiinpano](uusimuistiinpano04.png)
-
+<img src="https://raw.githubusercontent.com/nothros/FullStackOpen/main/osa0/uusimuistiinpano04.png" width="575"/>
 
 ## 0.5 Single page app
 
-[!uusi_muistiinpano](spalataus05.png)
+<img src="https://raw.githubusercontent.com/nothros/FullStackOpen/main/osa0/spalataus05.png" width="575"/>
+
 
 ## 0.6 Single page app
 
-[!uusi_muistiinpano](spauusinote06.png)
+![spauusimuistiinpano](spauusinote06.png)
