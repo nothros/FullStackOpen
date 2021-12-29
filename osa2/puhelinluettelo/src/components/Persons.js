@@ -4,7 +4,7 @@ import Person from './Person'
 const Persons = ({filter, persons, filteredPersons}) => {
     return(
       <>
-      {filter == ""
+      {filter === ""
           ? persons.map(person => (
             <Person
               key={person.name}
