@@ -6,7 +6,7 @@ const Weather = ({country}) => {
     const [weather, setWeather] = useState([])
   
     const params = {
-      access_key:"42bf940ade83d5bebfb94d21e4539c8d",
+      access_key: process.env.REACT_APP_API_KEY,
       query: country.name
     }
     useEffect(() => {
