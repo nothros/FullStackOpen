@@ -47,8 +47,8 @@ const App = () => {
   useEffect(() => {
     personService
       .getAll()
-      .then(initialNotes => {
-        setPersons(initialNotes)
+      .then(initNotes => {
+        setPersons(initNotes)
       })
   }, [])
 
@@ -122,7 +122,6 @@ const App = () => {
   }
 
   const handleSearchChange = (event) => {
-    console.log(event.target.value)
     setNewFilter(event.target.value);
     const filtered = persons.filter((person) =>
       person.name.toLowerCase().includes(event.target.value.toLowerCase())
