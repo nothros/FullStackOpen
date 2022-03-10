@@ -1,6 +1,6 @@
 Osat | Tunnit |
  --- | --- |
-Osa0 | 0.5 |
-Osa1 | 4 |
-Osa2 | 12 |
-Osa3 | 6 kesken |
+Osa0 (-21)| 0.5 |
+Osa1(-21) | 4 |
+Osa2(-21) | 12 |
+Osa3 (-22)| 6 kesken |
