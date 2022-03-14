@@ -5,6 +5,7 @@ import Persons from './components/Persons'
 import PersonForm from './components/PersonForm'
 import personService from './services/persons'
 import Notification from './components/Notification'
+import { type } from '@testing-library/user-event/dist/type'
 
 const App = () => {
   const [persons, setPersons] = useState([])
@@ -39,6 +40,8 @@ const App = () => {
     }, 3000)
   }
 
+  
+
 
   const removePerson = (id) => {
         const toDeleted = persons.find(person => person.id === id)
@@ -67,11 +70,12 @@ const App = () => {
           .create(personObject)
           .then(response => {
             setPersons(persons.concat(response))
-           
+            notify(`Added ${newName}`)
+
+          }).catch(error => {
+            notify(error.response.data.error, type="error")
+            console.log(error.response.data.error)
           })
-          
-        
-          notify(`Added ${newName}`)
       }
       
       setNewName('')
