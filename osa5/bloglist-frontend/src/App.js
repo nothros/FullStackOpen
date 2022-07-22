@@ -26,6 +26,7 @@ const App = () => {
       const user = JSON.parse(loggedUserJSON)
       setUser(user)
       blogService.setToken(user.token)
+      setBlogs( blogs )
     }
   }, [])
 
@@ -64,6 +65,60 @@ const App = () => {
     window.localStorage.clear()
     setUser(null)
   }
+
+  const handleLike = (blog) => {
+    blog.likes++
+    blogService
+      .update(blog)
+      .then((response) => {
+        console.log('response', response)
+      })
+      .then(() => {
+        blogService.getAll().then(blogs =>
+          setBlogs(blogs)
+        )
+        setNotification('Like added')
+        setNotificationType('info')
+        setTimeout(() => {
+          setNotification(null)
+        }, 2000)
+      })
+      .catch(() => {
+        setNotification('Like failed')
+        setNotificationType('error')
+        setTimeout(() => {
+          setNotification(null)
+        }, 2000)
+      })
+  }
+
+  const handleRemove = (blog) => {
+    if (window.confirm('remove blog ' + blog.title + ' by ' + blog.author + '?')) {
+      blogService
+        .remove(blog.id)  
+        .then((response) => {
+          console.log('response', response)
+        })
+        .then(() => {
+          blogService.getAll().then(blogs =>
+            setBlogs(blogs)
+          )
+          setNotification('removed')
+          setNotificationType('info')
+          setTimeout(() => {
+            setNotification(null)
+          }, 2000)
+        })
+        .catch(() => {
+          setNotification('removed failed')
+          setNotificationType('error')
+          setTimeout(() => {
+            setNotification(null)
+          }, 2000)
+        })
+    }
+  }
+
   const byLikes = (b1, b2) => b2.likes - b1.likes
 
   return (
@@ -90,7 +145,9 @@ const App = () => {
             />
 
             {blogs.sort(byLikes).map(blog => 
-              <Blog key={blog.id} id={blog.title} blog={blog} user={blog.user} setBlogs={setBlogs} />
+              <Blog key={blog.id} blog={blog} user={user} 
+              handleRemove={() => handleRemove(blog.id)} 
+              handleLike={() => handleLike(blog)} />           
             )}
           </div>
       </div>

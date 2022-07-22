@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-
 const Weather = ({country}) => {
     const [weather, setWeather] = useState([])
-  
+    console.log(weather)
     const params = {
       access_key: process.env.REACT_APP_API_KEY,
       query: country.name
     }
+    console.log(params.access_key)
     useEffect(() => {
     axios.get('http://api.weatherstack.com/current', {params})
       .then(response => {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Countries from "./components/Countries";
 import Filter from "./components/Filter";
+require('dotenv').config()
 
 const App = () => {
   const [countries, setCountries] =useState([])
