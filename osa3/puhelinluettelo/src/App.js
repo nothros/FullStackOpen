@@ -5,7 +5,6 @@ import Persons from './components/Persons'
 import PersonForm from './components/PersonForm'
 import personService from './services/persons'
 import Notification from './components/Notification'
-import { type } from '@testing-library/user-event/dist/type'
 
 const App = () => {
   const [persons, setPersons] = useState([])
@@ -56,11 +55,26 @@ const App = () => {
       }
 
   const addPerson = (event) => {
-        event.preventDefault()
-        const exists = persons.find(person => person.name === newName)
-        if (exists){
-          window.alert(`${newName} is already added to phonebook`);
-        }
+    event.preventDefault()
+    const exists = persons.find(person => person.name === newName)
+    if (exists){
+      const updatedperson = {
+        name: exists.name,
+        number: newNumber,
+      }
+      personService
+      .update(exists.id, updatedperson)
+      .then(response => {
+        setPersons(persons.concat(response))
+        notify(`Updated ${newName}`)
+
+      }).catch(error => {
+        notify(error.response.data.error)
+        console.log(error.response.data.error)
+      })
+
+      window.alert(`${newName} is already added to phonebook`);
+    }
         else{
         const personObject = {
           name: newName,
@@ -73,7 +87,7 @@ const App = () => {
             notify(`Added ${newName}`)
 
           }).catch(error => {
-            notify(error.response.data.error, type="error")
+            notify(error.response.data.error)
             console.log(error.response.data.error)
           })
       }
