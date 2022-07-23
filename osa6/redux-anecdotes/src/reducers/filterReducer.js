@@ -1,17 +1,22 @@
-const filterReducer = (state = null, action) => {
-    switch (action.type) {
-      case 'SET_FILTER':
-        return action.filter
-      default:
-        return state
-    }
-  }
+const initialState = { text: null }
 
-  export const filterChange = (filter) => {
-    return {
-      type: 'SET_FILTER',
-      filter,
-    }
-  }
+const filterReducer = (state = initialState, action) => {
 
-  export default filterReducer 
+  switch (action.type) {
+    case 'SET_FILTER':
+      return { text: action.text }
+    default:
+      return state
+  }
+}
+
+export const filterChange = text => {
+  return {
+    type: 'SET_FILTER',
+    text: text
+  }
+}
+
+
+
+export default filterReducer

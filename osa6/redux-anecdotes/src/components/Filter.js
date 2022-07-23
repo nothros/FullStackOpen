@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { filterChange } from '../reducers/filterReducer'
 
+
 const Filter = (props) => {
   const handleChange = (event) => {
     // input-kentän arvo muuttujassa event.target.value
@@ -21,4 +22,5 @@ const Filter = (props) => {
 
 
 
-export default connect(null, { filterChange })(Filter)  
+export default connect(null, { filterChange })(Filter)
+

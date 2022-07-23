@@ -6,13 +6,13 @@ import Notification from './components/Notification'
 import Filter from './components/Filter'
 import React, {useEffect} from 'react'
 import { initializeAnecdotes } from './reducers/anecdoteReducer'
+import { connect } from 'react-redux'
 
-const App = () => {
+const App = (props) => {
 
-  const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(initializeAnecdotes())
-  }, [dispatch])
+    props.initializeAnecdotes()
+  }, [props])
 
 
   return (
@@ -28,4 +28,4 @@ const App = () => {
   )
 }
 
-export default App
+export default connect(null, { initializeAnecdotes })(App)
