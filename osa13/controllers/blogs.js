@@ -9,17 +9,21 @@ router.get('/', async (req,res) => {
 })
 
 router.post('/', async (req, res) => {
-        console.log(req.body)
-        const newBlog = await Blog.create(req.body)
-        res.status(201).json(newBlog);
+    try {
+        const note = await Blog.create(req.body)
+        return res.json(note)
+      } catch(error) {
+        return res.status(400).json({ error })
+      }
   })
 
   router.delete('/:id', async (req, res) => {
     const blog = await Blog.findByPk(req.params.id)
     if (!blog) {
         return res.status(404).json({ error: 'Blog does not exist' });
-      }
-    
+    }
+
+      await blog.destroy();
       res.status(204).end();
 })
 
