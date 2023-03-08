@@ -1,9 +1,10 @@
 POST http://localhost:3001/api/users HTTP/1.1
 content-type: application/json
+Authorization: 
 
 {
     "id": 111,
-    "username": "testUser",
-    "name": "UserUser"
+    "username": "test@user.com",
+    "name": "testUser"
     }
 

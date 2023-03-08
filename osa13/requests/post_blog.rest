@@ -1,10 +1,12 @@
-POST http://localhost:3001/api/blogs/ HTTP/1.1
-content-type: application/json
+POST http://localhost:3001/api/blogs/
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RAdXNlci5jb20iLCJpZCI6MTExLCJpYXQiOjE2NzgyNjg2Mzh9.7UGBYUrMWGXNzZnsYAaJrLb8dK5hXFyyRdolkRcm4L0
 
 {
-    "id": 111,
+    "id": 696,
     "author": "testAuthor",
     "url": "testUrl.com",
     "title": "testBlog"
+
 }
 
