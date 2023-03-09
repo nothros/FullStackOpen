@@ -55,7 +55,6 @@ router.get('/', async (req,res) => {
       where,
       order: [['likes', 'DESC']],
     });
-    
     res.status(200).json(blogs);
     
 })
