@@ -19,7 +19,6 @@ router.post('/', async (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
-  console.log("PARAMS", req.params.id)
   let where = {};
 
   if (req.query) {
@@ -37,6 +36,10 @@ router.get('/:id', async (req, res) => {
       },
     },
   });
+
+  if (!user) {
+    return res.status(404).json({ message: 'No user found' });
+  }
 
   res.status(200).json(user);
 })

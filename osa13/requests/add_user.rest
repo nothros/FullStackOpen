@@ -3,7 +3,6 @@ content-type: application/json
 Authorization: 
 
 {
-    "id": 111,
     "username": "test@user.com",
     "name": "testUser"
     }

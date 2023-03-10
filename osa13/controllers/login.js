@@ -4,17 +4,22 @@ const jwt = require('jsonwebtoken')
 
 const { SECRET } = require('../util/config')
 const User = require('../models/user')
+const Session = require('../models/session')
 
+router.post('/', async (req, res) => {
+  console.log(req.body.username)
+    const u =req.body
+    const user = await User.findOne({ where: { username: u.username } });
 
-router.post('/', async (request, response) => {
-    const body = request.body
+    if (user.disabled) {
+      return res.status(401).json({ error: 'Account is disabled' });
+    }
   
-    const user = await User.findOne({
-      where: {
-        username: body.username
-      }
-    })
-    const passwordCorrect = body.password === 'salainen'
+    if (!user) {
+      return res.json(400).json({ error: 'Invalid username' });
+    }
+  
+    const passwordCorrect = req.body.password === 'salainen'
 
     if (!(user && passwordCorrect)) {
       return response.status(401).json({
@@ -29,9 +34,14 @@ router.post('/', async (request, response) => {
 
   const token = jwt.sign(userForToken, SECRET)
 
-  response
-    .status(200)
-    .send({ token, username: user.username, name: user.name })
+  console.log(token)
+  await Session.create({
+    token,
+    userId: user.id,
+  });
+
+  res.status(200).json({ token, username: user.username, name: user.name });
 })
+
 
 module.exports = router

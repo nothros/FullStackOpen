@@ -2,3 +2,4 @@ fly.toml
 .env
 node_modules/
 package-lock.json
+requests/
