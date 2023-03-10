@@ -1,5 +1,4 @@
 const { Model, DataTypes } = require('sequelize')
-
 const { sequelize } = require('../util/db')
 
 class Session extends Model{}
@@ -22,7 +21,7 @@ Session.init({
 }, {
     sequelize,
     underscored: true,
-    timestamps: true,
+    timestamps: false,
     modelName: 'session'
 })
 
