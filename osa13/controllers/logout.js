@@ -1,15 +1,18 @@
 const express = require('express');
 const router = express.Router();
 const { Session } = require('../models')
+const { tokenExtractor } = require('../util/middleware')
 
-
-router.delete('/', async (req, res) => {
-    console.log(req.body.userId)
-    const user = await Session.findOne({ where: { userId: req.body.userId } });
-
-    console.log(user)
-    await user.destroy();
-    res.status(204).json({message: 'Session removed'});
-})
+router.delete('/', tokenExtractor, async (req, res) => {
+    await Session.destroy({
+      where: {
+        userId: req.user.id
+      }
+    })
+  
+    res.status(200).send({
+      message: 'token revoken'
+    })
+  })
 
 module.exports = router;
